@@ -31,10 +31,17 @@ public class MyActivity extends Activity {
             cursor = db.getAllData();
             startManagingCursor(cursor);
 // формируем столбцы сопоставления
+<<<<<<< HEAD
             String[] from = new String[] { DB.COLUMN_IMG, DB.COLUMN_TXT, DB.COLUMN_TXT1 };
             int[] to = new int[] { R.id.ivImg, R.id.tvText, R.id.tvSmall };
 // создааем адаптер и настраиваем список
             scAdapter = new SimpleCursorAdapter(this, R.layout.item, cursor, from, to,2);
+=======
+            String[] from = new String[] { DB.COLUMN_IMG, DB.COLUMN_TXT };
+            int[] to = new int[] { R.id.ivImg, R.id.tvText };
+// создааем адаптер и настраиваем список
+            scAdapter = new SimpleCursorAdapter(this, R.layout.item, cursor, from, to);
+>>>>>>> origin/master
             lvData = (ListView) findViewById(R.id.lvData);
             lvData.setAdapter(scAdapter);
 // добавляем контекстное меню к списку
@@ -43,7 +50,11 @@ public class MyActivity extends Activity {
         // обработка нажатия кнопки
         public void onButtonClick(View view) {
 // добавляем запись
+<<<<<<< HEAD
             db.addRec("Sometitle " + (cursor.getCount() + 1),"Some small text. ohjeuhuwe weufh h " + (cursor.getCount() + 1), R.drawable.ic_launcher);
+=======
+            db.addRec("sometext " + (cursor.getCount() + 1), R.drawable.ic_launcher);
+>>>>>>> origin/master
 // обновляем курсор
             cursor.requery();
         }
