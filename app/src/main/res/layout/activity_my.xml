@@ -6,8 +6,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="showResult"
-        android:text="@string/add_record">
+        android:onClick="onclick"
+        android:text="@string/button_text">
     </Button>
     <ListView
         android:id="@+id/lvData"
