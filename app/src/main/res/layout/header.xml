@@ -9,7 +9,9 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/header_title">
+        android:text="@string/header_title"
+        android:onClick="onclick1"
+        android:clickable="true">
     </TextView>
     <TextView
         android:id="@+id/tvText"

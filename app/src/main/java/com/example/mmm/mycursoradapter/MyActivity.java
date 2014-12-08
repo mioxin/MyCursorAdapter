@@ -5,18 +5,29 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.HeaderViewListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 public class MyActivity extends Activity {
     final String LOG_TAG = "myLogs";
-    String[] data = {"one", "two", "three", "four", "five"};
+    int DIALOG_DATE = 1;
+    int DIALOG_TIME = 2;
+    int myYear = 2011;
+    int myMonth = 02;
+    int myDay = 03;
+    int myHour = 14;
+    int myMinute = 35;
     ListView lvMain;
     
     View header1;
@@ -43,6 +54,7 @@ public class MyActivity extends Activity {
         footer1 = createFooter("First footer 1");
         footer2 = createFooter("Second footer 2");
         fillList();
+
     }
 
 
@@ -73,18 +85,33 @@ public class MyActivity extends Activity {
 
     // нажатие кнопки
     public void onclick(View v) {
-        Object obj;
-        HeaderViewListAdapter hvlAdapter = (HeaderViewListAdapter) lvMain.getAdapter();
-        obj = hvlAdapter.getItem(1);
-        Log.d(LOG_TAG, "hvlAdapter.getItem(1) = " + obj.toString());
-        obj = hvlAdapter.getItem(4);
-        Log.d(LOG_TAG, "hvlAdapter.getItem(4) = " + obj.toString());
-        ArrayAdapter<String> alAdapter = (ArrayAdapter<String>) hvlAdapter.getWrappedAdapter();
-        obj = alAdapter.getItem(1);
-        Log.d(LOG_TAG, "alAdapter.getItem(1) = " + obj.toString());
-        obj = alAdapter.getItem(4);
-        Log.d(LOG_TAG, "alAdapter.getItem(4) = " + obj.toString());
+        showDialog(DIALOG_DATE);
     }
+
+    protected Dialog onCreateDialog(int id) {
+        if (id == DIALOG_DATE) {
+            DatePickerDialog tpd = new DatePickerDialog(this, myCallBack, myYear, myMonth, myDay);
+            return tpd;
+        }
+        if (id == DIALOG_TIME) {
+            TimePickerDialog tpd = new TimePickerDialog(this, myCallBack1, myHour, myMinute, true);
+            return tpd;
+        }
+        return super.onCreateDialog(id);
+
+    }
+
+    DatePickerDialog.OnDateSetListener myCallBack = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker datePicker, int year, int monthOfYear,
+                              int dayOfMonth) {
+            myYear = year;
+            myMonth = monthOfYear;
+            myDay = dayOfMonth;
+            TextView tvt = (TextView)header1.findViewById(R.id.tvText);
+            tvt.setText("Today is " + myDay + "/" + myMonth + "/" + myYear);
+        }
+    };
 
     // создание Header
     View createHeader(String text) {
@@ -98,4 +125,17 @@ public class MyActivity extends Activity {
         ((TextView)v.findViewById(R.id.tvText)).setText(text);
         return v;
     }
+
+    public void onclick1(View view) {
+        showDialog(DIALOG_TIME);
+    }
+
+    TimePickerDialog.OnTimeSetListener myCallBack1 = new TimePickerDialog.OnTimeSetListener() {
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            myHour = hourOfDay;
+            myMinute = minute;
+            TextView tvt = (TextView)header2.findViewById(R.id.tvText);
+            tvt.setText("Time is " + myHour + " hours " + myMinute + " minutes");
+        }
+    };
 }
