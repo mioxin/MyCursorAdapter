@@ -7,5 +7,7 @@
     <string name="app_name">SimpleCursorAdapter</string>
     <string name="add_record">Добавить запись</string>
     <string name="delete_record">Удалить запись</string>
-
+    <string name="items">Items</string>
+    <string name="adapter">Adapter</string>
+    <string name="cursor">Cursor</string>
 </resources>
