@@ -3,12 +3,37 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical">
-    <Button
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="onclick"
-        android:text="@string/button_text">
-    </Button>
+        android:layout_gravity="center_horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onclick"
+            android:text="@string/items"
+            android:id="@+id/btnItems">
+        </Button>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/adapter"
+            android:id="@+id/btnAdapter"
+            android:onClick="onclick" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cursor"
+            android:id="@+id/btnCursor"
+            android:onClick="onclick" />
+
+    </LinearLayout>
+
     <ListView
         android:id="@+id/lvData"
         android:layout_width="match_parent"
