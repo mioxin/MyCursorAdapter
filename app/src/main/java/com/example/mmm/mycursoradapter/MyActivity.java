@@ -97,62 +97,62 @@ public class MyActivity extends Activity {
     }
 
     // нажатие кнопки
-    public void onclick(View v) {
-        changeCount();
-        switch (v.getId()) {
-            case R.id.btnItems:
-                showDialog(DIALOG_ITEMS);
-                break;
-            case R.id.btnAdapter:
-                showDialog(DIALOG_ADAPTER);
-                break;
-            case R.id.btnCursor:
-                showDialog(DIALOG_CURSOR);
-                break;
-            default:
-                break;
-        }
-    }
+//    public void onclick(View v) {
+//        changeCount();
+//        switch (v.getId()) {
+//            case R.id.btnItems:
+//                showDialog(DIALOG_ITEMS);
+//                break;
+//            case R.id.btnAdapter:
+//                showDialog(DIALOG_ADAPTER);
+//                break;
+//            case R.id.btnCursor:
+//                showDialog(DIALOG_CURSOR);
+//                break;
+//            default:
+//                break;
+//        }
+//    }
 
-    protected Dialog onCreateDialog(int id) {
-        AlertDialog.Builder adb = new AlertDialog.Builder(this);
-        switch (id) {
-// массив
-            case DIALOG_ITEMS:
-                adb.setTitle(R.string.items);
-                adb.setMultiChoiceItems(data, chkd, myItemsMultiClickListener);
-                //adb.setItems(data, myClickListener);
-                break;
-// адаптер
-            case DIALOG_ADAPTER:
-                adb.setTitle(R.string.adapter);
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                        android.R.layout.simple_selectable_list_item, data);
-                adb.setSingleChoiceItems(adapter, -1, myClickListener);
-                //adb.setAdapter(adapter, myClickListener);
-                break;
-// курсор
-            case DIALOG_CURSOR:
-                adb.setTitle(R.string.cursor);
-                adb.setMultiChoiceItems(cursor, com.example.mmm.mycursoradapter.db.COLUMN_CHK, com.example.mmm.mycursoradapter.db.COLUMN_TXT, myCursorMultiClickListener);
-                //adb.setCursor(cursor, myClickListener, DB.COLUMN_TXT);
-                break;
-
-            case DIALOG_DATE:
-                DatePickerDialog dpd = new DatePickerDialog(this, myCallBack, myYear, myMonth, myDay);
-                return (Dialog) dpd;
-
-            case DIALOG_TIME:
-                TimePickerDialog tpd = new TimePickerDialog(this, myCallBack1, myHour, myMinute, true);
-                Log.d(LOG_TAG, "onCreate TimeDialog ");
-                return (Dialog) tpd;
-
-            default:
-                return super.onCreateDialog(id);
-        }
-        adb.setPositiveButton("<OK>", myClickListener);
-    return adb.create();
-    }
+//    protected Dialog onCreateDialog(int id) {
+//        AlertDialog.Builder adb = new AlertDialog.Builder(this);
+//        switch (id) {
+//// массив
+//            case DIALOG_ITEMS:
+//                adb.setTitle(R.string.items);
+//                adb.setMultiChoiceItems(data, chkd, myItemsMultiClickListener);
+//                //adb.setItems(data, myClickListener);
+//                break;
+//// адаптер
+//            case DIALOG_ADAPTER:
+//                adb.setTitle(R.string.adapter);
+//                ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+//                        android.R.layout.simple_selectable_list_item, data);
+//                adb.setSingleChoiceItems(adapter, -1, myClickListener);
+//                //adb.setAdapter(adapter, myClickListener);
+//                break;
+//// курсор
+//            case DIALOG_CURSOR:
+//                adb.setTitle(R.string.cursor);
+//                adb.setMultiChoiceItems(cursor, com.example.mmm.mycursoradapter.db.COLUMN_CHK, com.example.mmm.mycursoradapter.db.COLUMN_TXT, myCursorMultiClickListener);
+//                //adb.setCursor(cursor, myClickListener, DB.COLUMN_TXT);
+//                break;
+//
+//            case DIALOG_DATE:
+//                DatePickerDialog dpd = new DatePickerDialog(this, myCallBack, myYear, myMonth, myDay);
+//                return (Dialog) dpd;
+//
+//            case DIALOG_TIME:
+//                TimePickerDialog tpd = new TimePickerDialog(this, myCallBack1, myHour, myMinute, true);
+//                Log.d(LOG_TAG, "onCreate TimeDialog ");
+//                return (Dialog) tpd;
+//
+//            default:
+//                return super.onCreateDialog(id);
+//        }
+//        adb.setPositiveButton("<OK>", myClickListener);
+//    return adb.create();
+//    }
 
     protected void onPrepareDialog(int id, Dialog dialog) {
 // получаем доступ к адаптеру списка диалога
@@ -207,7 +207,7 @@ public class MyActivity extends Activity {
         public void onClick(DialogInterface dialog, int which, boolean isChecked) {
             ListView lv = ((AlertDialog) dialog).getListView();
             Log.d(LOG_TAG, "which = " + which + ", isChecked = " + isChecked);
-            db.changeRec(which, isChecked);
+            //db.changeRec(which, isChecked);
             cursor.requery();
         }
     };
