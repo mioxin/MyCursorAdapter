@@ -1,6 +1,5 @@
 package com.example.mmm.mycursoradapter;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -17,12 +16,10 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.DatePicker;
-import android.widget.HeaderViewListAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 public class MyActivity extends Activity {
     final String LOG_TAG = "myLogs";
@@ -45,7 +42,7 @@ public class MyActivity extends Activity {
     final int DIALOG_ADAPTER = 2;
     final int DIALOG_CURSOR = 3;
     int cnt = 0;
-    DB db;
+    com.example.mmm.mycursoradapter.db db;
     Cursor cursor;
 
     String data[] = { "one", "two", "three", "four" };
@@ -69,7 +66,7 @@ public class MyActivity extends Activity {
         footer2 = createFooter("Second footer 2");
         fillList();
         // открываем подключение к БД
-        db = new DB(this);
+        db = new com.example.mmm.mycursoradapter.db(this);
         db.open();
         cursor = db.getAllData();
         startManagingCursor(cursor);
@@ -137,7 +134,7 @@ public class MyActivity extends Activity {
 // курсор
             case DIALOG_CURSOR:
                 adb.setTitle(R.string.cursor);
-                adb.setMultiChoiceItems(cursor, DB.COLUMN_CHK, DB.COLUMN_TXT, myCursorMultiClickListener);
+                adb.setMultiChoiceItems(cursor, com.example.mmm.mycursoradapter.db.COLUMN_CHK, com.example.mmm.mycursoradapter.db.COLUMN_TXT, myCursorMultiClickListener);
                 //adb.setCursor(cursor, myClickListener, DB.COLUMN_TXT);
                 break;
 

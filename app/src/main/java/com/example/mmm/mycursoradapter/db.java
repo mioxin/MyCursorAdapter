@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class DB {
+public class db {
     final String LOG_TAG = "myLogs";
     private static final String DB_NAME = "mydb";
     private static final int DB_VERSION = 2;
@@ -30,7 +30,7 @@ public class DB {
     private final Context mCtx;
     private DBHelper mDBHelper;
     private SQLiteDatabase mDB;
-    public DB(Context ctx) {
+    public db(Context ctx) {
         mCtx = ctx;
     }
     // открыть подключение
