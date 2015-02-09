@@ -1,6 +1,5 @@
 package com.example.mmm.mycursoradapter;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -17,12 +16,10 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.DatePicker;
-import android.widget.HeaderViewListAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 public class MyActivity extends Activity {
     final String LOG_TAG = "myLogs";
@@ -45,7 +42,7 @@ public class MyActivity extends Activity {
     final int DIALOG_ADAPTER = 2;
     final int DIALOG_CURSOR = 3;
     int cnt = 0;
-    DB db;
+    com.example.mmm.mycursoradapter.db db;
     Cursor cursor;
 
     String data[] = { "one", "two", "three", "four" };
@@ -69,7 +66,7 @@ public class MyActivity extends Activity {
         footer2 = createFooter("Second footer 2");
         fillList();
         // открываем подключение к БД
-        db = new DB(this);
+        db = new com.example.mmm.mycursoradapter.db(this);
         db.open();
         cursor = db.getAllData();
         startManagingCursor(cursor);
@@ -99,7 +96,7 @@ public class MyActivity extends Activity {
         }
     }
 
-    // нажатие кнопки
+//    нажатие кнопки
     public void onclick(View v) {
         changeCount();
         switch (v.getId()) {
@@ -137,7 +134,7 @@ public class MyActivity extends Activity {
 // курсор
             case DIALOG_CURSOR:
                 adb.setTitle(R.string.cursor);
-                adb.setMultiChoiceItems(cursor, DB.COLUMN_CHK, DB.COLUMN_TXT, myCursorMultiClickListener);
+                adb.setMultiChoiceItems(cursor, com.example.mmm.mycursoradapter.db.COLUMN_CHK, com.example.mmm.mycursoradapter.db.COLUMN_TXT, myCursorMultiClickListener);
                 //adb.setCursor(cursor, myClickListener, DB.COLUMN_TXT);
                 break;
 
@@ -182,16 +179,16 @@ public class MyActivity extends Activity {
     // обработчик нажатия на пункт списка диалога
     DialogInterface.OnClickListener myClickListener = new DialogInterface.OnClickListener() {
         public void onClick(DialogInterface dialog, int which) {
-// выводим в лог позицию нажатого элемента
+            // выводим в лог позицию нажатого элемента
             ListView lv = ((AlertDialog) dialog).getListView();
             ListAdapter lAdapter = lv.getAdapter();
             TextView tvt = (TextView)header2.findViewById(R.id.tvText);
 
             if (which == Dialog.BUTTON_POSITIVE)
-// выводим в лог позицию выбранного элемента
+                // выводим в лог позицию выбранного элемента
                 Log.d(LOG_TAG, "pos = " + lv.getCheckedItemPosition());
             else {
-// выводим в лог позицию нажатого элемента
+                // выводим в лог позицию нажатого элемента
                 Log.d(LOG_TAG, "which = " + which);
                 tvt.setText("Нажали пункт №" + which + " " + lAdapter.getItem(which).toString());
             }
@@ -210,7 +207,7 @@ public class MyActivity extends Activity {
         public void onClick(DialogInterface dialog, int which, boolean isChecked) {
             ListView lv = ((AlertDialog) dialog).getListView();
             Log.d(LOG_TAG, "which = " + which + ", isChecked = " + isChecked);
-            db.changeRec(which, isChecked);
+            //db.changeRec(which, isChecked);
             cursor.requery();
         }
     };
