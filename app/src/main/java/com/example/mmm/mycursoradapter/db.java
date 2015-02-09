@@ -20,11 +20,13 @@ public class db {
     public static final String COLUMN_IMG = "img";
     public static final String COLUMN_TXT = "txt";
     public static final String COLUMN_TXT1 = "txt1";
+    public static final String COLUMN_CHK = "chk";
     private static final String DB_CREATE =
             "create table " + DB_TABLE + "(" +
                     COLUMN_ID + " integer primary key autoincrement, " +
                     COLUMN_IMG + " integer, " +
                     COLUMN_TXT + " text, " +
+                    COLUMN_CHK + " integer, " +
                     COLUMN_TXT1 + " text" +
                     ");";
     private final Context mCtx;
@@ -48,12 +50,20 @@ public class db {
         return mDB.query(DB_TABLE, null, null, null, null, null, null);
     }
 
+    // изменить запись в DB_TABLE
+    public void changeRec(int pos, boolean isChecked) {
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_CHK, (isChecked) ? 1 : 0);
+        mDB.update(DB_TABLE, cv, COLUMN_ID + " = " + (pos + 1), null);
+    }
+
     // добавить запись в DB_TABLE
     public void addRec(String txt, String txt1, int img) {
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_TXT, txt);
         cv.put(COLUMN_TXT1, txt1);
         cv.put(COLUMN_IMG, img);
+        cv.put(COLUMN_CHK, 0);
         mDB.insert(DB_TABLE, null, cv);
     }
     // удалить запись из DB_TABLE
@@ -74,8 +84,9 @@ public class db {
             ContentValues cv = new ContentValues();
             for (int i = 1; i < 5; i++) {
                 cv.put(COLUMN_TXT, "Sometitle " + i);
-                cv.put(COLUMN_TXT1, "Some small text. Aiuubnjk kk " + i);
+                cv.put(COLUMN_TXT1, "Some small text. #" + i);
                 cv.put(COLUMN_IMG, R.drawable.ic_launcher);
+                cv.put(COLUMN_CHK, 0);
                 db1.insert(DB_TABLE, null, cv);
                 Log.d(LOG_TAG, COLUMN_TXT + " " + COLUMN_TXT1 + " " + i);
             }
