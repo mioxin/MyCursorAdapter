@@ -207,7 +207,7 @@ public class MyActivity extends Activity {
         public void onClick(DialogInterface dialog, int which, boolean isChecked) {
             ListView lv = ((AlertDialog) dialog).getListView();
             Log.d(LOG_TAG, "which = " + which + ", isChecked = " + isChecked);
-            //db.changeRec(which, isChecked);
+            db.changeRec(which, isChecked);
             cursor.requery();
         }
     };
