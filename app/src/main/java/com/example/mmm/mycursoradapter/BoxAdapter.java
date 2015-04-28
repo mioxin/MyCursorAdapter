@@ -61,13 +61,13 @@ package com.example.mmm.mycursoradapter;
             ((TextView) view.findViewById(R.id.tvDescr)).setText(p.descr + "");
             ((ImageView) view.findViewById(R.id.ivImg)).setImageResource(p.img);
             ((TextView)view.findViewById(R.id.tvDate)).setText(ddd);
-            CheckBox cbBuy = (CheckBox) view.findViewById(R.id.cbBox);
+            CheckBox cbMark = (CheckBox) view.findViewById(R.id.cbBox);
 // присваиваем чекбоксу обработчик
-            cbBuy.setOnCheckedChangeListener(myCheckChangList);
+            cbMark.setOnCheckedChangeListener(myCheckChangList);
 // пишем позицию
-            cbBuy.setTag(position);
+            cbMark.setTag(position);
 // заполняем данными из товаров: в корзине или нет
-            cbBuy.setChecked(p.box);
+            cbMark.setChecked(p.box);
             return view;
         }
         // товар по позиции

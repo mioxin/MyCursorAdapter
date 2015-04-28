@@ -30,7 +30,7 @@ public class MyActivity extends Activity {
     int myDay = 03;
     int myHour = 14;
     int myMinute = 35;
-    ListView lvMain;
+    ListView lvData;
     
     View header1;
     View header2;
@@ -57,13 +57,13 @@ public class MyActivity extends Activity {
         fillData();
         adapter = new BoxAdapter(this, articles);
 // настраиваем список
-        lvMain = (ListView) findViewById(R.id.lvData);
-        //lvMain.setAdapter(adapter);
+        lvData = (ListView) findViewById(R.id.lvData);
+        //lvData.setAdapter(adapter);
         // создаем Header и Footer
-        header1 = createHeader("First header 1");
-        header2 = createHeader("Second header 2");
-        footer1 = createFooter("First footer 1");
-        footer2 = createFooter("Second footer 2");
+//        header1 = createHeader("First header 1");
+//        header2 = createHeader("Second header 2");
+//        footer1 = createFooter("First footer 1");
+//        footer2 = createFooter("Second footer 2");
         fillList();
         // открываем подключение к БД
         db = new com.example.mmm.mycursoradapter.db(this);
@@ -86,11 +86,11 @@ public class MyActivity extends Activity {
     // формирование списка
     void fillList() {
         try {
-            lvMain.addHeaderView(header1);
-            lvMain.addHeaderView(header2, "some text header2.", false);
-            lvMain.addFooterView(footer1);
-            lvMain.addFooterView(footer2, "some text footer2.", false);
-            lvMain.setAdapter(adapter);
+//            lvData.addHeaderView(header1);
+//            lvData.addHeaderView(header2, "some text header2.", false);
+//            lvData.addFooterView(footer1);
+//            lvData.addFooterView(footer2, "some text footer2.", false);
+            lvData.setAdapter(adapter);
         } catch (Exception ex) {
             Log.e(LOG_TAG, ex.getMessage());
         }
